@@ -10,9 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductsController : ControllerBase
+ 
+    public class ProductsController : Controller
     {
         private IProductService _productService;
 
@@ -21,7 +20,7 @@ namespace WebAPI.Controllers
             _productService = productService;
         }
 
-        [HttpGet("getall")]
+
         //[Authorize(Roles="Product.List")]
         public IActionResult GetList()
         {
@@ -34,7 +33,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpGet("getlistbycategory")]
+ 
         public IActionResult GetListByCategory(int categoryId)
         {
             var result = _productService.GetListByCategory(categoryId);
@@ -46,7 +45,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpGet("getbyid")]
+   
         public IActionResult GetById(int productId)
         {
             var result = _productService.GetById(productId);
@@ -58,7 +57,6 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpPost("add")]
         public IActionResult Add(Product product)
         {
             var result = _productService.Add(product);
@@ -70,7 +68,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpPost("update")]
+      
         public IActionResult Update(Product product)
         {
             var result = _productService.Update(product);
@@ -82,7 +80,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpPost("delete")]
+      
         public IActionResult Delete(Product product)
         {
             var result = _productService.Delete(product);
@@ -94,7 +92,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpPost("transaction")]
+     
         public IActionResult TransactionTest(Product product)
         {
             var result = _productService.TransactionalOperation(product);
